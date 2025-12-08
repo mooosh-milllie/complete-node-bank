@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a9cb7635.css",
+    "main.js": "/static/js/main.d6d9a933.js",
+    "static/js/453.0552c68d.chunk.js": "/static/js/453.0552c68d.chunk.js",
+    "static/media/video.mp4": "/static/media/video.b609eaf5ca51036ffc2e.mp4",
+    "static/media/credit-card1.webp": "/static/media/credit-card1.8906a81c6554c2bedacb.webp",
+    "static/media/background.webp": "/static/media/background.5cf9a12f7667fbd98caa.webp",
+    "static/media/login-bg.webp": "/static/media/login-bg.016576400f6c00858e6f.webp",
+    "static/media/notification.svg?s3g3t9": "/static/media/notification.5d0158671dd860c714c4.svg",
+    "static/media/notification.eot": "/static/media/notification.3657084dc0419605a91c.eot",
+    "static/media/notification.woff?s3g3t9": "/static/media/notification.c392cd33d9d9de730f9d.woff",
+    "static/media/notification.ttf?s3g3t9": "/static/media/notification.c5d9251ea82e42f75381.ttf",
+    "index.html": "/index.html",
+    "main.a9cb7635.css.map": "/static/css/main.a9cb7635.css.map",
+    "main.d6d9a933.js.map": "/static/js/main.d6d9a933.js.map",
+    "453.0552c68d.chunk.js.map": "/static/js/453.0552c68d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a9cb7635.css",
+    "static/js/main.d6d9a933.js"
+  ]
+}
