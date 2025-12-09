@@ -1,26 +1,32 @@
 const {Sequelize} = require('sequelize');
 const CONFIG = require('./config');
 
-console.log(CONFIG.DB_USER, CONFIG.PASSWORD);
+console.log("ENV", CONFIG.NODE_ENV)
+
+let sequelize;
+
+if (CONFIG.NODE_ENV !== "production") {
+  sequelize = new Sequelize(CONFIG.DATABASE_URL,{
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    },
+    sync: true,
+    logging: false
+  });
+} else {  
+  sequelize = new Sequelize(CONFIG.DATABASE_URL, {
+    dialect: 'postgres',
+    logging: false,
+    sync: true
+  })
+}
 
 
-const sequelize = new Sequelize(CONFIG.DATABASE, CONFIG.DB_USER, CONFIG.PASSWORD, {
-  host: CONFIG.HOST,
-  database: CONFIG.DATABASE,
-  port: CONFIG.DATABASE_PORT,
-  dialect: 'postgres',
-  logging: false,
-  sync: true
-})
 
-// const sequelize = new Sequelize(CONFIG.DATABASE_URL,{
-//   dialectOptions: {
-//     ssl: {
-//       require: true,
-//       rejectUnauthorized: false
-//     }
-//   }
-// });
 
 
 
