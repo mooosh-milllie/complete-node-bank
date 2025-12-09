@@ -1,7 +1,6 @@
 const {Sequelize} = require('sequelize');
+const pg = require("pg");
 const CONFIG = require('./config');
-
-console.log("ENV", CONFIG.NODE_ENV)
 
 let sequelize;
 
@@ -15,7 +14,8 @@ if (CONFIG.NODE_ENV !== "production") {
       }
     },
     sync: true,
-    logging: false
+    logging: false,
+    dialectModule: pg
   });
 } else {  
   sequelize = new Sequelize(CONFIG.DATABASE_URL, {
