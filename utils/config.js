@@ -1,12 +1,9 @@
 require('dotenv').config();
 
 module.exports = {
+  BANK_NAME: process.env.BANK_NAME,
   DATABASE : process.env.DATABASE,
   DATABASE_URL: process.env.DATABASE_URL,
-  HOST:  process.env.HOST,
-  DATABASE_PORT : process.env.DATABASE_PORT,
-  DB_USER: process.env.DB_USER,
-  PASSWORD: process.env.PASSWORD,
   JWT_SECRET: process.env.JWT_SECRET,
   ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET,
   DEVICE_TOKEN_SECRET: process.env.DEVICE_TOKEN_SECRET,

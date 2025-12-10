@@ -105,13 +105,13 @@ CustomerLoginInfo.belongsTo(Login, {
 // }
 // syncModels();
 
-// sequelize.sync({force: true}) // Use force: true to drop existing tables
-//   .then(() => {
-//     console.log('Tables created successfully!');
-//   })
-//   .catch((err) => {
-//     console.error('Error creating tables:', err);
-//   });
+sequelize.sync({force: true}) // Use force: true to drop existing tables
+  .then(() => {
+    console.log('Tables created successfully!');
+  })
+  .catch((err) => {
+    console.error('Error creating tables:', err);
+  });
 
 
 // Login.sync({force: true})

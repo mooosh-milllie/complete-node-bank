@@ -58,38 +58,44 @@ router.post('/',  async (req, res, next) => {
     }
     // If a user does not exist with the unique details provided, a the customer is created
     let transaction;
+    let newCustomer;
+    let newAccount;
     try {
       transaction = await sequelize.transaction();
 
       const {firstName, lastName, middleName, email, address, city, state, socialSecurity, gender, maritalStatus, branch, phoneNumber, occupation, employer} = validationResult;
 
-      const newCustomer = await Customers.create({
+      newCustomer = await Customers.create({
         firstName, middleName, lastName, email, address, city, state, socialSecurity, gender, maritalStatus, occupation, branch, employer, phoneNumber, dob: formatedDOB, identityCard: imageUrl.secure_url
       }, {transaction});
 
-     const newAccount = await Accounts.create({
+      newAccount = await Accounts.create({
         accountNumber: accountNumberGenerator,
         accountType: validationResult.accountType,
         customer_id: newCustomer.id
       }, {transaction});
 
       await transaction.commit();
-      
-      
-      let emailSubject = 'Welcome to Node Bank';
-      let emailBody = `
-      <h1>Welcome to NodeBank</h1>
-      <p> Your Account registration was successful, \n your account number is ${accountNumberGenerator} and pin is ${newAccount.pin}</p>
-      <p>Visit http://localhost:3000/enrollment to enroll for online banking, and bank on the go.</p>`;
-      let emailReceiver = newCustomer.email;
-      await transporter.sendMail({...mailOptions(emailReceiver, emailSubject, emailBody, 'html')});
-      
+      res.status(200).send({success: true, message: 'ACCOUNT CREATED'});
     } catch (error) {
       await transaction.rollback();
       next(error)
     }
+
+    let emailSubject = `Welcome to ${CONFIG.BANK_NAME}`;
+    let emailBody = `
+    <h1>Welcome to ${CONFIG.BANK_NAME}</h1>
+    <p> Your Account registration was successful, \n your account number is ${accountNumberGenerator} and pin is ${newAccount.pin}</p>
+    <p>Visit ${CONFIG.FRONTEND_URL}/enrollment to enroll for online banking, and bank on the go.</p>`;
+    let emailReceiver = newCustomer.email;
+
+    try {
+      await transporter.sendMail({...mailOptions(emailReceiver, emailSubject, emailBody, 'html')});
+    } catch (error) {
+      console.log("Email Error", error);
+    }
     
-    return res.status(200).send({success: true, message: 'ACCOUNT CREATED'});
+    return;
   } catch (error) {
     console.log(error)
     return next(error)
