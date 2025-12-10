@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 require('express-async-errors');
 const expressIP = require('express-ip');
+const helmet = require("helmet");
 const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 
@@ -27,7 +28,7 @@ const { verifyRoles } = require('./middleware/verifyRoles');
 const sseAuth = require('./middleware/sseAuth');
 
 app.set('trust proxy', true)
-
+app.use(helmet());
 app.use(credentials);
 app.use(cors(corsOptions));
 app.use(expressIP().getIpInfoMiddleware);

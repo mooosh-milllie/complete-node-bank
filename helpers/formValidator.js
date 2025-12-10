@@ -1,5 +1,5 @@
 const yup = require('yup');
-const differenceInYears = require('date-fns/differenceInYears');
+const {differenceInYears} = require('date-fns');
 const validator = require('validator/validator');
 
 

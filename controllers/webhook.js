@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const { Op } = require("sequelize");
 const sequelize = require('../utils/db');
-const ibanTools = require('ibantools');
 const { webhookLocalBankTransferSchema } = require('../helpers/formValidator');
 const { validateRoutingNumber } = require('../helpers/validateRoutingNum');
 const {Customers, AccountHistory, PendingTransactions, Accounts} = require('../models/index');

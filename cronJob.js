@@ -1,9 +1,7 @@
 const cron = require('node-cron');
 const {Customers} = require('./models/index');
-const {Op} = require('sequelize');
+require('sequelize');
 const { transporter, mailOptions } = require('./utils/emailHelpers');
-const { getMonth } = require('date-fns');
-const path = require('path');
 
 const valid = cron.validate('0 0 * * *');
 console.log(`Cron Validation: ${valid}`);
